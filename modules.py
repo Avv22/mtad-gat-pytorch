@@ -78,7 +78,7 @@ class FeatureAttentionLayer(nn.Module):
 
         # Original GAT attention
         else:
-            Wx = self.lin(x)                                                  # (b, k, k, embed_dim)
+            Wx = self.lin(x)                                                  # I think it should be (b, k, embed_dim) not (b, k, k, embed_dim)
             a_input = self._make_attention_input(Wx)                          # (b, k, k, 2*embed_dim)
             e = self.leakyrelu(torch.matmul(a_input, self.a)).squeeze(3)      # (b, k, k, 1)
 
